@@ -7,7 +7,7 @@
   // --- Editable Content ---
   const pseudonym = 'renowned'
   const tagline = `i make things for my own use.
-<br>you can also call me <strong>\"meisei\"</strong>. call me whichever you like.
+<br>you can also call me <strong>\"meisei\"</strong>. either name is fine.
 `
 
   const sectionOrder = ['home', 'projects', 'socials', 'hobbies']
