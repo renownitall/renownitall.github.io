@@ -6,8 +6,8 @@
 
   // --- Editable Content ---
   const pseudonym = 'renowned'
-  const tagline = `i make things you\'ll never use.
-<br>i also go by <strong>\"meisei\"</strong>. use what you prefer.
+  const tagline = `i make things for my own use.
+<br>you can also call me <strong>\"meisei\"</strong>. call me whichever you like.
 `
 
   const sectionOrder = ['home', 'projects', 'socials', 'hobbies']
@@ -57,7 +57,7 @@
   const socialsListStyle = 'plain'
 
   const hobbies = [
-    { name: 'playing (the) piano', subtext: '...only when i have the time to.' },
+    { name: 'playing the piano', subtext: '...only when i have the time to.' },
     { name: 'running', subtext: 'short distances.'},
     { name: 'reading fiction', subtext: 'a chapter before bed.' },
   ]
