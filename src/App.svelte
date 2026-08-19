@@ -59,7 +59,7 @@
   const hobbies = [
     { name: 'playing (the) piano', subtext: '...only when i have the time to.' },
     { name: 'running', subtext: 'short distances.'},
-    { name: 'reading fiction', subtext: 'to escape from reality.' },
+    { name: 'reading fiction', subtext: 'a chapter before bed.' },
   ]
   const hobbiesListStyle = 'bulleted'
 
