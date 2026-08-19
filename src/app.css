@@ -244,7 +244,7 @@ a:focus-visible {
 
 @media (max-width: 34rem) {
   main {
-    width: min(calc(100% - (var(--space-4) * 2)), var(--content-width));
+    width: min(calc(100% - (var(--space-6) * 2)), var(--content-width));
     padding-top: var(--space-4);
   }
 }
