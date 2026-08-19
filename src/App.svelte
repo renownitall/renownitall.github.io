@@ -16,8 +16,8 @@
     {
       title: 'this very website',
       description: 'it\'s in the name.',
-      link: 'https://github.com/renownitall/renown',
-      url: 'renownitall/renown',
+      link: 'https://github.com/renownitall/renownitall.github.io',
+      url: 'renownitall/renownitall.github.io',
     },
     {
       title: 'dotfiles',
