@@ -145,6 +145,7 @@
       <section id="home" class="home" aria-labelledby="home-title">
         <img class="avatar" src="pfp.webp" alt="profile portrait of renowned" />
         <div>
+          <p class="greeting">Hi. I'm</p>
           <h1 id="home-title">{pseudonym}<span class="cursor" aria-hidden="true">_</span></h1>
           <p class="tagline">{@html tagline}</p>
         </div>
