@@ -6,7 +6,7 @@
 
   // --- Editable Content ---
   const pseudonym = 'renowned'
-  const tagline = `i make things for my own use.
+  const tagline = `i like making things for my own use.
 <br>you can also call me <strong>\"meisei\"</strong>. either name is fine.
 `
 
