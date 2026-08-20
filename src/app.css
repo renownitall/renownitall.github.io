@@ -24,23 +24,8 @@
   --focus-width: 2px;
 }
 
-[data-theme='dark'] {
-  --color-bg: #121212;
-  --color-bg-alt: #1e1e1e;
-  --color-text-primary: #f5f5f5;
-  --color-text-secondary: #b3b3b3;
-  --color-text-dim: #8a8a8a;
-  --color-divider: #3a3a3a;
-}
-
-[data-theme='light'] {
-  --color-bg: #fafafa;
-  --color-bg-alt: #f0f0f0;
-  --color-text-primary: #1a1a1a;
-  --color-text-secondary: #4d4d4d;
-  --color-text-dim: #6b6b6b;
-  --color-divider: #d0d0d0;
-}
+/* Theme color variables are inlined in index.html <style> to avoid a flash
+   of incorrect colors before the bundled CSS loads. */
 
 * {
   box-sizing: border-box;
