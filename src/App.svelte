@@ -26,6 +26,12 @@
       url: 'renownitall/dotfiles',
     },
     {
+      title: 'forge',
+      description: 'My Arch Linux package repository',
+      link: 'https://github.com/renownitall/forge',
+      url: 'renownitall/forge',
+    },
+    {
       title: 'calpdf',
       description: 'A simple PDF toolkit to run alongside Calibre',
       link: 'https://github.com/renownitall/calpdf',
