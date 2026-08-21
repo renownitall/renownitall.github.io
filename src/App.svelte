@@ -68,6 +68,10 @@
 
   let theme = 'dark'
 
+  // typing animation state
+  let typed = ''
+  let typingDone = false
+
   function listTag(style) {
     return style === 'numbered' ? 'ol' : 'ul'
   }
@@ -83,6 +87,26 @@
     const media = window.matchMedia('(prefers-color-scheme: dark)')
     theme = root.dataset.theme || (media.matches ? 'dark' : 'light')
     let lastG = 0
+
+    // Type out the name once, with a random per-character delay. Skip the
+    // animation entirely for users who prefer reduced motion.
+    let typeTimer
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      typed = pseudonym
+      typingDone = true
+    } else {
+      let i = 0
+      const tick = () => {
+        i++
+        typed = pseudonym.slice(0, i)
+        if (i < pseudonym.length) {
+          typeTimer = setTimeout(tick, 40 + Math.random() * 160)
+        } else {
+          typingDone = true
+        }
+      }
+      typeTimer = setTimeout(tick, 300)
+    }
 
     const followSystemTheme = (event) => {
       if (localStorage.getItem('renown-theme')) return
@@ -118,6 +142,7 @@
     window.addEventListener('keydown', handleKeydown)
 
     return () => {
+      clearTimeout(typeTimer)
       media.removeEventListener('change', followSystemTheme)
       window.removeEventListener('keydown', handleKeydown)
     }
@@ -145,7 +170,7 @@
         <img class="avatar" src="pfp.webp" alt="profile portrait of renowned" />
         <div>
           <p class="greeting">hi. i'm</p>
-          <h1 id="home-title">{pseudonym}<span class="cursor" aria-hidden="true">_</span></h1>
+          <h1 id="home-title" aria-label={pseudonym}>{typed}<span class="cursor" class:blink={typingDone} aria-hidden="true">_</span></h1>
           <p class="tagline">
             i like making things for my own use.<br />
             you can also call me <strong>meisei</strong>. either name is fine.

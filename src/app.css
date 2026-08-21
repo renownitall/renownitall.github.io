@@ -173,6 +173,9 @@ h2 {
 .cursor {
   margin-left: var(--space-1);
   color: var(--color-text-secondary);
+}
+
+.cursor.blink {
   animation: cursor-blink 1.1s steps(1, end) infinite;
 }
 
@@ -278,7 +281,7 @@ a:focus-visible {
     transition: none;
   }
 
-  .cursor {
+  .cursor.blink {
     animation: none;
   }
 }
