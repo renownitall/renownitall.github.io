@@ -49,7 +49,7 @@
     },
     {
       platform: 'Email',
-      link: 'mailto:renowitall@duck.com',
+      link: 'mailto:renownitall@duck.com',
       subtext: 'Best way to reach me',
       icon: Mail,
     },
@@ -156,7 +156,7 @@
         } else {
           lastG = now
         }
-      } else {
+      } else if (/^[1-4]$/.test(event.key)) {
         const num = Number(event.key)
         if (num >= 1 && num <= sectionOrder.length) {
           document.getElementById(sectionOrder[num - 1])?.scrollIntoView({ behavior: scrollBehavior })
@@ -174,10 +174,6 @@
     }
   })
 </script>
-
-<svelte:head>
-  <title>renown</title>
-</svelte:head>
 
 <GraphBackground enabled={graphEnabled} />
 
@@ -197,7 +193,14 @@
         <EyeOff size={17} />
       {/if}
     </button>
-    <button class="icon-button" type="button" onclick={toggleTheme} aria-label="Toggle theme" title="Toggle theme">
+    <button
+      class="icon-button"
+      type="button"
+      onclick={toggleTheme}
+      aria-label="Toggle theme"
+      aria-pressed={theme === 'dark'}
+      title="Toggle theme"
+    >
       {#if theme === 'dark'}
         <Sun size={17} />
       {:else}
@@ -209,7 +212,7 @@
   {#each sectionOrder as sectionId}
     {#if sectionId === 'home'}
       <section id="home" class="home" aria-labelledby="home-title">
-        <img class="avatar" src="pfp.webp" alt="profile portrait of renowned" />
+        <img class="avatar" src="pfp.webp" alt="renowned" />
         <div>
           <p class="greeting">Hi, I'm</p>
           <h1 id="home-title" aria-label={pseudonym}>{typed}<span class="cursor" class:blink={typingDone} aria-hidden="true">_</span></h1>
@@ -223,9 +226,9 @@
       <section id="projects" aria-labelledby="projects-title">
         <h2 id="projects-title">My stuff</h2>
         <svelte:element this={listTag(projectsListStyle)} class:list-plain={projectsListStyle === 'plain'}>
-          {#each projects as project}
+          {#each projects as project (project.title)}
             <li>
-              <a class="item-title" href={project.link} target="_blank" rel="noreferrer">{project.title}</a>
+              <a class="item-title" href={project.link} target="_blank" rel="noopener noreferrer">{project.title}</a>
               {#if project.url}<span class="item-meta">{project.url}</span>{/if}
               <p>{project.description}</p>
             </li>
@@ -236,11 +239,18 @@
       <section id="socials" aria-labelledby="socials-title">
         <h2 id="socials-title">Where to find me</h2>
         <svelte:element this={listTag(socialsListStyle)} class:list-plain={socialsListStyle === 'plain'}>
-          {#each socials as social}
+          {#each socials as social (social.platform)}
+            {@const Icon = social.icon}
             <li class="social-item">
-              <span class="social-icon"><svelte:component this={social.icon} size={17} /></span>
+              <span class="social-icon"><Icon size={17} /></span>
               <span>
-                <a class="item-title" href={social.link}>{social.platform}</a>
+                <a
+                  class="item-title"
+                  href={social.link}
+                  target={social.link.startsWith('http') ? '_blank' : undefined}
+                  rel={social.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  >{social.platform}</a
+                >
                 <span class="item-meta">{social.subtext}</span>
               </span>
             </li>
@@ -251,7 +261,7 @@
       <section id="hobbies" aria-labelledby="hobbies-title">
         <h2 id="hobbies-title">What I do in my free time</h2>
         <svelte:element this={listTag(hobbiesListStyle)} class:list-plain={hobbiesListStyle === 'plain'}>
-          {#each hobbies as hobby}
+          {#each hobbies as hobby (hobby.name)}
             <li>
               <span class="item-title">{hobby.name}</span>
               {#if hobby.subtext}<span class="item-meta">{hobby.subtext}</span>{/if}
@@ -265,5 +275,5 @@
 
 <footer>
   <p>Last changed on {lastBuilt}</p>
-  <p>Built with <a href="https://svelte.dev" target="_blank" rel="noreferrer">Svelte</a> · <a href="https://github.com/renownitall/renown" target="_blank" rel="noreferrer">View the source</a> on GitHub</p>
+  <p>Built with <a href="https://svelte.dev" target="_blank" rel="noopener noreferrer">Svelte</a> · <a href="https://github.com/renownitall/renown" target="_blank" rel="noopener noreferrer">View the source</a> on GitHub</p>
 </footer>
