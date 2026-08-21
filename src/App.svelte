@@ -13,20 +13,20 @@
 
   const projects = [
     {
-      title: 'this very website',
-      description: 'it\'s in the name.',
+      title: 'this website',
+      description: 'it\'s in the name',
       link: 'https://github.com/renownitall/renown',
       url: 'renownitall/renown',
     },
     {
       title: 'dotfiles',
-      description: 'my over-engineered linux setup.',
+      description: 'my over-engineered linux setup',
       link: 'https://github.com/renownitall/dotfiles',
       url: 'renownitall/dotfiles',
     },
     {
       title: 'calpdf',
-      description: 'a simple pdf toolkit to run alongside calibre.',
+      description: 'a simple pdf toolkit to run alongside calibre',
       link: 'https://github.com/renownitall/calpdf',
       url: 'renownitall/calpdf',
     },
@@ -56,9 +56,9 @@
   const socialsListStyle = 'plain'
 
   const hobbies = [
-    { name: 'playing the piano', subtext: '...only when i have the time to.' },
-    { name: 'running', subtext: 'short distances.'},
-    { name: 'reading fiction', subtext: 'a chapter before bed.' },
+    { name: 'playing the piano', subtext: '...only when i have the time to' },
+    { name: 'running', subtext: 'short distances'},
+    { name: 'reading fiction', subtext: 'a chapter before bed' },
   ]
   const hobbiesListStyle = 'bulleted'
 
@@ -173,7 +173,7 @@
           <h1 id="home-title" aria-label={pseudonym}>{typed}<span class="cursor" class:blink={typingDone} aria-hidden="true">_</span></h1>
           <p class="tagline">
             i like making things for my own use.<br />
-            you can also call me <strong>meisei</strong>. either name is fine.
+            you can also call me <strong>meisei</strong>. either name is fine
           </p>
         </div>
       </section>
@@ -222,6 +222,6 @@
 </main>
 
 <footer>
-  <p>last built {lastBuilt}.</p>
+  <p>last built {lastBuilt}</p>
   <p>built with <a href="https://svelte.dev" target="_blank" rel="noreferrer">svelte</a>. <a href="https://github.com/renownitall/renown" target="_blank" rel="noreferrer">view the source</a></p>
 </footer>
