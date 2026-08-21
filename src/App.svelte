@@ -6,9 +6,6 @@
 
   // --- Editable Content ---
   const pseudonym = 'renowned'
-  const tagline = `i like making things for my own use.
-<br>you can also call me <strong>meisei</strong>. either name is fine.
-`
 
   const sectionOrder = ['home', 'projects', 'socials', 'hobbies']
 
@@ -149,7 +146,10 @@
         <div>
           <p class="greeting">hi. i'm</p>
           <h1 id="home-title">{pseudonym}<span class="cursor" aria-hidden="true">_</span></h1>
-          <p class="tagline">{@html tagline}</p>
+          <p class="tagline">
+            i like making things for my own use.<br />
+            you can also call me <strong>meisei</strong>. either name is fine.
+          </p>
         </div>
       </section>
     {:else if sectionId === 'projects'}
