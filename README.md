@@ -1,8 +1,6 @@
 # renown
 
-Hi. This is my single-page personal site, built with Vite and Svelte. It shows my projects, socials, and hobbies on one page, with a terminal-style design and system-aware light and dark themes.
-
-The page also hides Vim-style keyboard navigation as an easter egg. Nothing on the page hints that it exists.
+Hi. This is my single-page personal site, built with Vite and Svelte. Pull up the site to see it for yourself.
 
 ## Run locally
 
