@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte'
 
-  export let enabled = true
+  let { enabled = false } = $props()
 
   const MAX_SPEED = 0.18
   const CONNECT_DIST = 130
@@ -189,7 +189,9 @@
     }
   })
 
-  $: if (controller) controller.update(enabled)
+  $effect(() => {
+    if (controller) controller.update(enabled)
+  })
 </script>
 
 <canvas class="graph-bg" bind:this={canvas} aria-hidden="true"></canvas>

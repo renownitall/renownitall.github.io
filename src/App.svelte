@@ -62,13 +62,26 @@
     { name: 'Reading fiction', subtext: 'A chapter before bed' },
   ]
   const hobbiesListStyle = 'bulleted'
-
   // --- Behavior Settings ---
   const scrollIncrement = 90
   const doubleGTimeout = 500
 
   let theme = 'dark'
-  let graphEnabled = true
+  let graphEnabled = false
+
+  const readStorage = (key) => {
+    try {
+      return localStorage.getItem(key)
+    } catch {
+      return null
+    }
+  }
+
+  const writeStorage = (key, value) => {
+    try {
+      localStorage.setItem(key, value)
+    } catch {}
+  }
 
   // typing animation state
   let typed = ''
@@ -81,25 +94,27 @@
   function toggleTheme() {
     theme = theme === 'dark' ? 'light' : 'dark'
     document.documentElement.dataset.theme = theme
-    localStorage.setItem('renown-theme', theme)
+    writeStorage('renown-theme', theme)
   }
 
   function toggleGraph() {
     graphEnabled = !graphEnabled
-    localStorage.setItem('renown-graph', graphEnabled ? 'on' : 'off')
+    writeStorage('renown-graph', graphEnabled ? 'on' : 'off')
   }
 
   onMount(() => {
     const root = document.documentElement
     const media = window.matchMedia('(prefers-color-scheme: dark)')
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const scrollBehavior = reducedMotion.matches ? 'auto' : 'smooth'
     theme = root.dataset.theme || (media.matches ? 'dark' : 'light')
-    graphEnabled = localStorage.getItem('renown-graph') === 'on'
+    graphEnabled = readStorage('renown-graph') === 'on'
     let lastG = 0
 
     // Type out the name once, with a random per-character delay. Skip the
     // animation entirely for users who prefer reduced motion.
     let typeTimer
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (reducedMotion.matches) {
       typed = pseudonym
       typingDone = true
     } else {
@@ -117,7 +132,7 @@
     }
 
     const followSystemTheme = (event) => {
-      if (localStorage.getItem('renown-theme')) return
+      if (readStorage('renown-theme')) return
       theme = event.matches ? 'dark' : 'light'
       root.dataset.theme = theme
     }
@@ -125,24 +140,27 @@
     const handleKeydown = (event) => {
       const target = event.target
       if (target instanceof HTMLElement && (target.matches('input, textarea') || target.isContentEditable)) return
+      if (event.ctrlKey || event.metaKey || event.altKey) return
 
       if (event.key === 'j') {
-        window.scrollBy({ top: scrollIncrement, behavior: 'smooth' })
+        window.scrollBy({ top: scrollIncrement, behavior: scrollBehavior })
       } else if (event.key === 'k') {
-        window.scrollBy({ top: -scrollIncrement, behavior: 'smooth' })
+        window.scrollBy({ top: -scrollIncrement, behavior: scrollBehavior })
       } else if (event.key === 'G') {
-        window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })
+        window.scrollTo({ top: document.documentElement.scrollHeight, behavior: scrollBehavior })
       } else if (event.key === 'g') {
         const now = Date.now()
         if (now - lastG <= doubleGTimeout) {
-          window.scrollTo({ top: 0, behavior: 'smooth' })
+          window.scrollTo({ top: 0, behavior: scrollBehavior })
           lastG = 0
         } else {
           lastG = now
         }
-      } else if (/^[1-4]$/.test(event.key)) {
-        const sectionId = sectionOrder[Number(event.key) - 1]
-        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+      } else {
+        const num = Number(event.key)
+        if (num >= 1 && num <= sectionOrder.length) {
+          document.getElementById(sectionOrder[num - 1])?.scrollIntoView({ behavior: scrollBehavior })
+        }
       }
     }
 
@@ -231,7 +249,7 @@
       </section>
     {:else if sectionId === 'hobbies'}
       <section id="hobbies" aria-labelledby="hobbies-title">
-        <h2 id="hobbies-title">What I do on my free time</h2>
+        <h2 id="hobbies-title">What I do in my free time</h2>
         <svelte:element this={listTag(hobbiesListStyle)} class:list-plain={hobbiesListStyle === 'plain'}>
           {#each hobbies as hobby}
             <li>

@@ -9,10 +9,18 @@
     <style>
       /* Inlined theme variables to prevent flash of incorrect colors before the
          bundled CSS loads. The inline <script> below sets data-theme, and these
-         rules immediately resolve the CSS custom properties. */
+         rules immediately resolve the CSS custom properties. Light doubles as
+         the :root fallback so colors stay defined even without data-theme. */
+      :root {
+        --color-bg: #fafafa;
+        --color-text-primary: #1a1a1a;
+        --color-text-secondary: #4d4d4d;
+        --color-text-dim: #6b6b6b;
+        --color-divider: #d0d0d0;
+      }
+
       [data-theme='dark'] {
         --color-bg: #121212;
-        --color-bg-alt: #1e1e1e;
         --color-text-primary: #f5f5f5;
         --color-text-secondary: #b3b3b3;
         --color-text-dim: #8a8a8a;
@@ -21,7 +29,6 @@
 
       [data-theme='light'] {
         --color-bg: #fafafa;
-        --color-bg-alt: #f0f0f0;
         --color-text-primary: #1a1a1a;
         --color-text-secondary: #4d4d4d;
         --color-text-dim: #6b6b6b;
@@ -36,9 +43,13 @@
     <script>
       // Apply the saved theme (or system preference) before paint to avoid a color flash.
       (() => {
-        const saved = localStorage.getItem('renown-theme')
+        let saved = null
+        try {
+          saved = localStorage.getItem('renown-theme')
+        } catch {}
+        const stored = saved === 'dark' || saved === 'light' ? saved : null
         const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-        document.documentElement.dataset.theme = saved || (systemDark ? 'dark' : 'light')
+        document.documentElement.dataset.theme = stored || (systemDark ? 'dark' : 'light')
       })()
     </script>
   </head>
