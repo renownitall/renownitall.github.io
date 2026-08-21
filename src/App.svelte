@@ -12,6 +12,8 @@
 
   const sectionOrder = ['home', 'projects', 'socials', 'hobbies']
 
+  const lastBuilt = __BUILD_DATE__
+
   const projects = [
     {
       title: 'this very website',
@@ -193,3 +195,8 @@
     {/if}
   {/each}
 </main>
+
+<footer>
+  <p>last built {lastBuilt}.</p>
+  <p>built with <a href="https://svelte.dev" target="_blank" rel="noreferrer">svelte</a>. <a href="https://github.com/renownitall/renownitall.github.io" target="_blank" rel="noreferrer">view the source</a></p>
+</footer>

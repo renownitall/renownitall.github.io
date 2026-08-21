@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&family=Noto+Sans:wght@400;700&display=swap');
 
 :root {
   --font-family: 'Noto Sans Mono', monospace;
+  --font-sans: 'Noto Sans', sans-serif;
   --font-weight-normal: 400;
   --font-weight-bold: 700;
   --font-size-body: 1rem;
@@ -58,7 +59,35 @@ a {
 main {
   width: min(calc(100% - (var(--space-5) * 2)), var(--content-width));
   margin: 0 auto;
-  padding: var(--space-6) 0 var(--space-8);
+  padding: var(--space-6) 0 var(--space-5);
+}
+
+footer {
+  width: min(calc(100% - (var(--space-5) * 2)), var(--content-width));
+  margin: 0 auto;
+  padding: var(--space-5) 0 var(--space-7);
+  border-top: 1px solid var(--color-divider);
+  color: var(--color-text-dim);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-small);
+}
+
+footer p {
+  margin: 0;
+}
+
+footer p + p {
+  margin-top: var(--space-2);
+}
+
+footer a {
+  color: inherit;
+  text-decoration-color: var(--color-text-dim);
+  text-underline-offset: var(--space-1);
+}
+
+footer a:hover {
+  color: var(--color-text-primary);
 }
 
 .utility {
@@ -230,8 +259,12 @@ a:focus-visible {
 }
 
 @media (max-width: 34rem) {
-  main {
+  main,
+  footer {
     width: min(calc(100% - (var(--space-6) * 2)), var(--content-width));
+  }
+
+  main {
     padding-top: var(--space-4);
   }
 }
