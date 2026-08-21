@@ -47,17 +47,12 @@ body {
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height);
   text-align: left;
-  text-transform: lowercase;
   transition: background-color 160ms ease, color 160ms ease;
 }
 
 button,
 a {
   font: inherit;
-}
-
-button {
-  text-transform: inherit;
 }
 
 main {
