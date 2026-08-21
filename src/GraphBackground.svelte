@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte'
 
+  export let enabled = true
+
   const MAX_SPEED = 0.18
   const CONNECT_DIST = 130
   const AREA_PER_NODE = 28000
@@ -8,12 +10,13 @@
   const MAX_NODES = 60
   const MAX_DPR = 2
   const NODE_RADIUS = 1.4
-  const NODE_ALPHA = 0.2
-  const LINE_ALPHA = 0.07
+  const NODE_ALPHA = { dark: 0.2, light: 0.34 }
+  const LINE_ALPHA = { dark: 0.07, light: 0.12 }
   const FRAME_UNIT = 1000 / 60
   const FALLBACK_COLOR = '#888888'
 
   let canvas
+  let controller = null
 
   onMount(() => {
     const ctx = canvas.getContext('2d')
@@ -26,12 +29,17 @@
     let running = false
     let lastTime = 0
     let color = FALLBACK_COLOR
+    let nodeAlpha = NODE_ALPHA.dark
+    let lineAlpha = LINE_ALPHA.dark
 
-    const readColor = () => {
+    const readTheme = () => {
       const value = getComputedStyle(document.documentElement)
         .getPropertyValue('--color-text-primary')
         .trim()
       if (value) color = value
+      const scheme = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
+      nodeAlpha = NODE_ALPHA[scheme]
+      lineAlpha = LINE_ALPHA[scheme]
     }
 
     const makeNode = () => ({
@@ -59,7 +67,7 @@
       ctx.fillStyle = color
       ctx.strokeStyle = color
       ctx.lineWidth = 1
-      ctx.globalAlpha = NODE_ALPHA
+      ctx.globalAlpha = nodeAlpha
       for (const node of nodes) {
         ctx.beginPath()
         ctx.arc(node.x, node.y, NODE_RADIUS, 0, Math.PI * 2)
@@ -72,7 +80,7 @@
           const dy = nodes[i].y - nodes[j].y
           const distSq = dx * dx + dy * dy
           if (distSq >= maxDistSq) continue
-          ctx.globalAlpha = LINE_ALPHA * (1 - Math.sqrt(distSq) / CONNECT_DIST)
+          ctx.globalAlpha = lineAlpha * (1 - Math.sqrt(distSq) / CONNECT_DIST)
           ctx.beginPath()
           ctx.moveTo(nodes[i].x, nodes[i].y)
           ctx.lineTo(nodes[j].x, nodes[j].y)
@@ -80,6 +88,11 @@
         }
       }
       ctx.globalAlpha = 1
+    }
+
+    const render = () => {
+      if (enabled) draw()
+      else ctx.clearRect(0, 0, width, height)
     }
 
     const resize = () => {
@@ -90,7 +103,7 @@
       canvas.height = Math.round(height * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       syncNodeCount()
-      draw()
+      render()
     }
 
     const step = (dt) => {
@@ -129,8 +142,11 @@
       cancelAnimationFrame(rafId)
     }
 
-    const applyMotionPreference = () => {
-      if (reducedMotion.matches) {
+    const update = (isEnabled) => {
+      if (!isEnabled) {
+        stop()
+        ctx.clearRect(0, 0, width, height)
+      } else if (reducedMotion.matches) {
         stop()
         draw()
       } else {
@@ -140,21 +156,25 @@
 
     const handleVisibilityChange = () => {
       if (document.hidden) stop()
-      else applyMotionPreference()
+      else update(enabled)
     }
 
     const themeObserver = new MutationObserver(() => {
-      readColor()
-      draw()
+      readTheme()
+      render()
     })
 
-    readColor()
+    const handleMotionPreferenceChange = () => update(enabled)
+
+    readTheme()
     resize()
-    applyMotionPreference()
+
+    controller = { update }
+    update(enabled)
 
     window.addEventListener('resize', resize)
     document.addEventListener('visibilitychange', handleVisibilityChange)
-    reducedMotion.addEventListener('change', applyMotionPreference)
+    reducedMotion.addEventListener('change', handleMotionPreferenceChange)
     themeObserver.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['data-theme'],
@@ -164,10 +184,12 @@
       stop()
       window.removeEventListener('resize', resize)
       document.removeEventListener('visibilitychange', handleVisibilityChange)
-      reducedMotion.removeEventListener('change', applyMotionPreference)
+      reducedMotion.removeEventListener('change', handleMotionPreferenceChange)
       themeObserver.disconnect()
     }
   })
+
+  $: if (controller) controller.update(enabled)
 </script>
 
 <canvas class="graph-bg" bind:this={canvas} aria-hidden="true"></canvas>

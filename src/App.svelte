@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte'
-  import { Bird, Mail, Moon, Sun } from '@lucide/svelte'
+  import { Bird, Eye, EyeOff, Mail, Moon, Sun } from '@lucide/svelte'
   import GithubMark from './GithubMark.svelte'
   import GraphBackground from './GraphBackground.svelte'
 
@@ -68,6 +68,7 @@
   const doubleGTimeout = 500
 
   let theme = 'dark'
+  let graphEnabled = true
 
   // typing animation state
   let typed = ''
@@ -83,10 +84,19 @@
     localStorage.setItem('renown-theme', theme)
   }
 
+  function toggleGraph() {
+    graphEnabled = !graphEnabled
+    localStorage.setItem('renown-graph', graphEnabled ? 'on' : 'off')
+  }
+
   onMount(() => {
     const root = document.documentElement
     const media = window.matchMedia('(prefers-color-scheme: dark)')
     theme = root.dataset.theme || (media.matches ? 'dark' : 'light')
+    const savedGraph = localStorage.getItem('renown-graph')
+    graphEnabled = savedGraph
+      ? savedGraph === 'on'
+      : !window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let lastG = 0
 
     // Type out the name once, with a random per-character delay. Skip the
@@ -154,11 +164,25 @@
   <title>renown</title>
 </svelte:head>
 
-<GraphBackground />
+<GraphBackground enabled={graphEnabled} />
 
 <main>
   <div class="utility">
-    <button class="theme-toggle" type="button" onclick={toggleTheme} aria-label="toggle theme" title="toggle theme">
+    <button
+      class="icon-button"
+      type="button"
+      onclick={toggleGraph}
+      aria-label="toggle background animation"
+      aria-pressed={graphEnabled}
+      title="toggle background animation"
+    >
+      {#if graphEnabled}
+        <Eye size={17} />
+      {:else}
+        <EyeOff size={17} />
+      {/if}
+    </button>
+    <button class="icon-button" type="button" onclick={toggleTheme} aria-label="toggle theme" title="toggle theme">
       {#if theme === 'dark'}
         <Sun size={17} />
       {:else}
