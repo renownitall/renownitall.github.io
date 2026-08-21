@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&family=Noto+Sans:wght@400;700&display=swap');
-
 :root {
   --font-sans: 'Noto Sans', sans-serif;
-  --font-mono: 'Noto Sans Mono', monospace;
+  --font-mono: 'Noto Sans Mono', ui-monospace, monospace;
   --font-weight-normal: 400;
   --font-weight-bold: 700;
   --font-size-body: 1rem;
@@ -40,6 +38,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  min-height: 100dvh;
   background: var(--color-bg);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
@@ -162,8 +161,7 @@ h1 {
 .greeting {
   color: var(--color-text-secondary);
   font-size: var(--font-size-small);
-  margin: 0;
-  margin-bottom: var(--space-1);
+  margin: 0 0 var(--space-1) 0;
 }
 
 .tagline {
@@ -255,6 +253,15 @@ li p {
   display: inline-flex;
   margin-top: var(--space-1);
   color: var(--color-text-secondary);
+}
+
+:focus {
+  outline: var(--focus-width) solid var(--color-text-primary);
+  outline-offset: var(--space-1);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 :focus-visible {
