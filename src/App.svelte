@@ -15,8 +15,8 @@
     {
       title: 'this very website',
       description: 'it\'s in the name.',
-      link: 'https://github.com/renownitall/renownitall.github.io',
-      url: 'renownitall/renownitall.github.io',
+      link: 'https://github.com/renownitall/renown'.
+      url: 'renownitall/renown',
     },
     {
       title: 'dotfiles',
@@ -223,5 +223,5 @@
 
 <footer>
   <p>last built {lastBuilt}.</p>
-  <p>built with <a href="https://svelte.dev" target="_blank" rel="noreferrer">svelte</a>. <a href="https://github.com/renownitall/renownitall.github.io" target="_blank" rel="noreferrer">view the source</a></p>
+  <p>built with <a href="https://svelte.dev" target="_blank" rel="noreferrer">svelte</a>. <a href="https://github.com/renownitall/renown" target="_blank" rel="noreferrer">view the source</a></p>
 </footer>
