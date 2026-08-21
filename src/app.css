@@ -220,12 +220,8 @@ li + li {
 
 .item-title {
   color: var(--color-text-primary);
-  font-family: var(--font-mono);
-  font-weight: var(--font-weight-bold);
-}
-
-#hobbies .item-title {
   font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
 }
 
 a.item-title {
