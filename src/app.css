@@ -245,13 +245,13 @@ li p {
 
 .social-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-3);
 }
 
 .social-icon {
   display: inline-flex;
-  margin-top: 0;
+  margin-top: var(--space-1);
   color: var(--color-text-secondary);
 }
 
