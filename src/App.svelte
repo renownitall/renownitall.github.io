@@ -44,7 +44,7 @@
     {
       platform: 'Twitter',
       link: 'https://twitter.com/renownitall',
-      subtext: 'Nothing to see here',
+      subtext: 'No, I refuse to call it X',
       icon: Bird,
     },
     {
@@ -203,7 +203,7 @@
       </section>
     {:else if sectionId === 'projects'}
       <section id="projects" aria-labelledby="projects-title">
-        <h2 id="projects-title">Projects</h2>
+        <h2 id="projects-title">My stuff</h2>
         <svelte:element this={listTag(projectsListStyle)} class:list-plain={projectsListStyle === 'plain'}>
           {#each projects as project}
             <li>
@@ -216,7 +216,7 @@
       </section>
     {:else if sectionId === 'socials'}
       <section id="socials" aria-labelledby="socials-title">
-        <h2 id="socials-title">Socials</h2>
+        <h2 id="socials-title">Where to find me</h2>
         <svelte:element this={listTag(socialsListStyle)} class:list-plain={socialsListStyle === 'plain'}>
           {#each socials as social}
             <li class="social-item">
@@ -231,7 +231,7 @@
       </section>
     {:else if sectionId === 'hobbies'}
       <section id="hobbies" aria-labelledby="hobbies-title">
-        <h2 id="hobbies-title">Hobbies</h2>
+        <h2 id="hobbies-title">What I do on my free time</h2>
         <svelte:element this={listTag(hobbiesListStyle)} class:list-plain={hobbiesListStyle === 'plain'}>
           {#each hobbies as hobby}
             <li>
@@ -246,6 +246,6 @@
 </main>
 
 <footer>
-  <p>Last built on {lastBuilt}</p>
+  <p>Last changed on {lastBuilt}</p>
   <p>Built with <a href="https://svelte.dev" target="_blank" rel="noreferrer">Svelte</a>. <a href="https://github.com/renownitall/renown" target="_blank" rel="noreferrer">View the source</a></p>
 </footer>

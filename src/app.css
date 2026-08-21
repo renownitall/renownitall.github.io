@@ -237,7 +237,7 @@ a.item-title:hover {
 .item-meta {
   display: block;
   color: var(--color-text-dim);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: var(--font-size-small);
 }
 
