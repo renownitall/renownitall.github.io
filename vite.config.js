@@ -19,7 +19,7 @@ const parts = new Intl.DateTimeFormat('en-US', {
 const month = parts.find((p) => p.type === 'month').value
 const day = parts.find((p) => p.type === 'day').value
 const year = parts.find((p) => p.type === 'year').value
-const buildDate = `${month} ${day}${nth(Number(day))}, ${year}`.toLowerCase()
+const buildDate = `${month} ${day}${nth(Number(day))}, ${year}`
 
 // https://vite.dev/config/
 export default defineConfig({
