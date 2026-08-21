@@ -44,7 +44,9 @@
         let saved = null
         try {
           saved = localStorage.getItem('renown-theme')
-        } catch {}
+        } catch (err) {
+          console.warn('Failed to read renown-theme from localStorage:', err)
+        }
         const stored = saved === 'dark' || saved === 'light' ? saved : null
         const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
         document.documentElement.dataset.theme = stored || (systemDark ? 'dark' : 'light')

@@ -16,10 +16,11 @@
   const FALLBACK_COLOR = '#888888'
 
   let canvas
-  let controller = null
+  let updateGraph = $state(null)
 
   onMount(() => {
     const ctx = canvas.getContext('2d')
+    if (!ctx) return
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 
     let width = 0
@@ -63,6 +64,7 @@
     }
 
     function draw() {
+      if (!ctx) return
       ctx.clearRect(0, 0, width, height)
       ctx.fillStyle = color
       ctx.strokeStyle = color
@@ -91,11 +93,13 @@
     }
 
     const render = () => {
+      if (!ctx) return
       if (enabled) draw()
       else ctx.clearRect(0, 0, width, height)
     }
 
     const resize = () => {
+      if (!ctx) return
       const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR)
       width = window.innerWidth
       height = window.innerHeight
@@ -143,6 +147,7 @@
     }
 
     const update = (isEnabled) => {
+      if (!ctx) return
       if (!isEnabled) {
         stop()
         ctx.clearRect(0, 0, width, height)
@@ -169,7 +174,7 @@
     readTheme()
     resize()
 
-    controller = { update }
+    updateGraph = update
     update(enabled)
 
     window.addEventListener('resize', resize)
@@ -182,6 +187,7 @@
 
     return () => {
       stop()
+      updateGraph = null
       window.removeEventListener('resize', resize)
       document.removeEventListener('visibilitychange', handleVisibilityChange)
       reducedMotion.removeEventListener('change', handleMotionPreferenceChange)
@@ -190,7 +196,7 @@
   })
 
   $effect(() => {
-    if (controller) controller.update(enabled)
+    updateGraph?.(enabled)
   })
 </script>
 
