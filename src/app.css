@@ -225,6 +225,10 @@ li + li {
   font-weight: var(--font-weight-bold);
 }
 
+#hobbies .item-title {
+  font-family: var(--font-sans);
+}
+
 a.item-title {
   text-decoration-color: var(--color-text-dim);
   text-underline-offset: var(--space-1);
