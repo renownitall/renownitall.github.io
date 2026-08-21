@@ -57,12 +57,16 @@ a {
 }
 
 main {
+  position: relative;
+  z-index: 1;
   width: min(calc(100% - (var(--space-5) * 2)), var(--content-width));
   margin: 0 auto;
   padding: var(--space-6) 0 var(--space-5);
 }
 
 footer {
+  position: relative;
+  z-index: 1;
   width: min(calc(100% - (var(--space-5) * 2)), var(--content-width));
   margin: 0 auto;
   padding: var(--space-5) 0 var(--space-7);

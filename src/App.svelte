@@ -2,6 +2,7 @@
   import { onMount } from 'svelte'
   import { Bird, Mail, Moon, Sun } from '@lucide/svelte'
   import GithubMark from './GithubMark.svelte'
+  import GraphBackground from './GraphBackground.svelte'
 
 
   // --- Editable Content ---
@@ -152,6 +153,8 @@
 <svelte:head>
   <title>renown</title>
 </svelte:head>
+
+<GraphBackground />
 
 <main>
   <div class="utility">
