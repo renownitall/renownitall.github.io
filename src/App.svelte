@@ -37,7 +37,7 @@
     {
       platform: 'github',
       link: 'https://github.com/renownitall',
-      subtext: 'bad code',
+      subtext: 'sphagetti code',
       icon: GithubMark,
     },
     {
