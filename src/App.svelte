@@ -14,20 +14,20 @@
 
   const projects = [
     {
-      title: 'this website',
-      description: 'it\'s in the name',
+      title: 'This website',
+      description: "It's in the name",
       link: 'https://github.com/renownitall/renown',
       url: 'renownitall/renown',
     },
     {
       title: 'dotfiles',
-      description: 'my over-engineered linux setup',
+      description: 'My over-engineered Linux setup',
       link: 'https://github.com/renownitall/dotfiles',
       url: 'renownitall/dotfiles',
     },
     {
       title: 'calpdf',
-      description: 'a simple pdf toolkit to run alongside calibre',
+      description: 'A simple PDF toolkit to run alongside Calibre',
       link: 'https://github.com/renownitall/calpdf',
       url: 'renownitall/calpdf',
     },
@@ -36,30 +36,30 @@
 
   const socials = [
     {
-      platform: 'github',
+      platform: 'GitHub',
       link: 'https://github.com/renownitall',
-      subtext: 'spaghetti code',
+      subtext: 'Spaghetti code',
       icon: GithubMark,
     },
     {
-      platform: 'twitter',
+      platform: 'Twitter',
       link: 'https://twitter.com/renownitall',
-      subtext: 'nothing to see here',
+      subtext: 'Nothing to see here',
       icon: Bird,
     },
     {
-      platform: 'email',
+      platform: 'Email',
       link: 'mailto:renowitall@duck.com',
-      subtext: 'best way to reach me',
+      subtext: 'Best way to reach me',
       icon: Mail,
     },
   ]
   const socialsListStyle = 'plain'
 
   const hobbies = [
-    { name: 'playing the piano', subtext: '...only when i have the time to' },
-    { name: 'running', subtext: 'short distances'},
-    { name: 'reading fiction', subtext: 'a chapter before bed' },
+    { name: 'Playing the piano', subtext: '...only when I have the time to' },
+    { name: 'Running', subtext: 'Short distances' },
+    { name: 'Reading fiction', subtext: 'A chapter before bed' },
   ]
   const hobbiesListStyle = 'bulleted'
 
@@ -93,10 +93,7 @@
     const root = document.documentElement
     const media = window.matchMedia('(prefers-color-scheme: dark)')
     theme = root.dataset.theme || (media.matches ? 'dark' : 'light')
-    const savedGraph = localStorage.getItem('renown-graph')
-    graphEnabled = savedGraph
-      ? savedGraph === 'on'
-      : !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    graphEnabled = localStorage.getItem('renown-graph') === 'on'
     let lastG = 0
 
     // Type out the name once, with a random per-character delay. Skip the
@@ -172,9 +169,9 @@
       class="icon-button"
       type="button"
       onclick={toggleGraph}
-      aria-label="toggle background animation"
+      aria-label="Toggle background animation"
       aria-pressed={graphEnabled}
-      title="toggle background animation"
+      title="Toggle background animation"
     >
       {#if graphEnabled}
         <Eye size={17} />
@@ -182,7 +179,7 @@
         <EyeOff size={17} />
       {/if}
     </button>
-    <button class="icon-button" type="button" onclick={toggleTheme} aria-label="toggle theme" title="toggle theme">
+    <button class="icon-button" type="button" onclick={toggleTheme} aria-label="Toggle theme" title="Toggle theme">
       {#if theme === 'dark'}
         <Sun size={17} />
       {:else}
@@ -196,17 +193,17 @@
       <section id="home" class="home" aria-labelledby="home-title">
         <img class="avatar" src="pfp.webp" alt="profile portrait of renowned" />
         <div>
-          <p class="greeting">hi. i'm</p>
+          <p class="greeting">Hi, I'm</p>
           <h1 id="home-title" aria-label={pseudonym}>{typed}<span class="cursor" class:blink={typingDone} aria-hidden="true">_</span></h1>
           <p class="tagline">
-            i like making things for my own use.<br />
-            you can also call me <strong>meisei</strong>. either name is fine
+            I like making things for my own use.<br />
+            You can also call me <strong>Meisei</strong>. Either name works.
           </p>
         </div>
       </section>
     {:else if sectionId === 'projects'}
       <section id="projects" aria-labelledby="projects-title">
-        <h2 id="projects-title">projects</h2>
+        <h2 id="projects-title">Projects</h2>
         <svelte:element this={listTag(projectsListStyle)} class:list-plain={projectsListStyle === 'plain'}>
           {#each projects as project}
             <li>
@@ -219,7 +216,7 @@
       </section>
     {:else if sectionId === 'socials'}
       <section id="socials" aria-labelledby="socials-title">
-        <h2 id="socials-title">socials</h2>
+        <h2 id="socials-title">Socials</h2>
         <svelte:element this={listTag(socialsListStyle)} class:list-plain={socialsListStyle === 'plain'}>
           {#each socials as social}
             <li class="social-item">
@@ -234,7 +231,7 @@
       </section>
     {:else if sectionId === 'hobbies'}
       <section id="hobbies" aria-labelledby="hobbies-title">
-        <h2 id="hobbies-title">hobbies</h2>
+        <h2 id="hobbies-title">Hobbies</h2>
         <svelte:element this={listTag(hobbiesListStyle)} class:list-plain={hobbiesListStyle === 'plain'}>
           {#each hobbies as hobby}
             <li>
@@ -249,6 +246,6 @@
 </main>
 
 <footer>
-  <p>last built {lastBuilt}</p>
-  <p>built with <a href="https://svelte.dev" target="_blank" rel="noreferrer">svelte</a>. <a href="https://github.com/renownitall/renown" target="_blank" rel="noreferrer">view the source</a></p>
+  <p>Last built {lastBuilt}</p>
+  <p>Built with <a href="https://svelte.dev" target="_blank" rel="noreferrer">Svelte</a>. <a href="https://github.com/renownitall/renown" target="_blank" rel="noreferrer">View the source</a></p>
 </footer>

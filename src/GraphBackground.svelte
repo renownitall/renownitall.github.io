@@ -10,8 +10,8 @@
   const MAX_NODES = 60
   const MAX_DPR = 2
   const NODE_RADIUS = 1.4
-  const NODE_ALPHA = { dark: 0.2, light: 0.34 }
-  const LINE_ALPHA = { dark: 0.07, light: 0.12 }
+  const NODE_ALPHA = { dark: 0.14, light: 0.26 }
+  const LINE_ALPHA = { dark: 0.05, light: 0.06 }
   const FRAME_UNIT = 1000 / 60
   const FALLBACK_COLOR = '#888888'
 

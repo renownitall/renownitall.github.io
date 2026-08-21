@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&family=Noto+Sans:wght@400;700&display=swap');
 
 :root {
-  --font-family: 'Noto Sans Mono', monospace;
   --font-sans: 'Noto Sans', sans-serif;
+  --font-mono: 'Noto Sans Mono', monospace;
   --font-weight-normal: 400;
   --font-weight-bold: 700;
   --font-size-body: 1rem;
@@ -43,7 +43,7 @@ body {
   min-height: 100vh;
   background: var(--color-bg);
   color: var(--color-text-primary);
-  font-family: var(--font-family);
+  font-family: var(--font-sans);
   font-size: var(--font-size-body);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height);
@@ -72,7 +72,6 @@ footer {
   padding: var(--space-5) 0 var(--space-7);
   text-align: center;
   color: var(--color-text-dim);
-  font-family: var(--font-sans);
   font-size: var(--font-size-small);
 }
 
@@ -155,6 +154,7 @@ p {
 
 h1 {
   margin-bottom: var(--space-1);
+  font-family: var(--font-mono);
   font-size: var(--font-size-name);
   font-weight: var(--font-weight-bold);
   line-height: 1.2;
@@ -236,6 +236,7 @@ a.item-title:hover {
 .item-meta {
   display: block;
   color: var(--color-text-dim);
+  font-family: var(--font-mono);
   font-size: var(--font-size-small);
 }
 
