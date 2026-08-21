@@ -15,7 +15,7 @@
     {
       title: 'this very website',
       description: 'it\'s in the name.',
-      link: 'https://github.com/renownitall/renown'.
+      link: 'https://github.com/renownitall/renown',
       url: 'renownitall/renown',
     },
     {
