@@ -65,7 +65,8 @@ main {
 footer {
   width: min(calc(100% - (var(--space-5) * 2)), var(--content-width));
   margin: 0 auto;
-  padding: var(--space-8) 0 var(--space-7);
+  padding: var(--space-5) 0 var(--space-7);
+  text-align: center;
   color: var(--color-text-dim);
   font-family: var(--font-sans);
   font-size: var(--font-size-small);
