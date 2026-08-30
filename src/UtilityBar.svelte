@@ -1,24 +1,10 @@
 <script>
-  import { Eye, EyeOff, Moon, Sun } from '@lucide/svelte'
+  import { Moon, Sun } from '@lucide/svelte'
 
-  let { theme, graphEnabled, onToggleTheme, onToggleGraph } = $props()
+  let { theme, onToggleTheme } = $props()
 </script>
 
 <div class="utility">
-  <button
-    class="icon-button"
-    type="button"
-    onclick={onToggleGraph}
-    aria-label="Toggle background animation"
-    aria-pressed={graphEnabled}
-    title="Toggle background animation"
-  >
-    {#if graphEnabled}
-      <Eye size={17} />
-    {:else}
-      <EyeOff size={17} />
-    {/if}
-  </button>
   <button
     class="icon-button"
     type="button"
@@ -54,7 +40,6 @@
     transition: color 160ms ease;
   }
   .icon-button:hover { color: var(--color-text-primary); }
-  .icon-button + .icon-button { margin-left: var(--space-2); }
   @media (prefers-reduced-motion: reduce) {
     .icon-button { transition: none; }
   }

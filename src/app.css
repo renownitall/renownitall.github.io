@@ -1,6 +1,6 @@
 :root {
-  --font-sans: 'Noto Sans', sans-serif;
-  --font-mono: 'Noto Sans Mono', ui-monospace, monospace;
+  --font-sans: 'Geist', 'Noto Sans', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
   --font-weight-normal: 400;
   --font-weight-bold: 700;
   --font-size-body: 1rem;
