@@ -39,17 +39,20 @@
       }
     </style>
     <script>
-      // Apply the saved theme (or system preference) before paint to avoid a color flash.
+      // Apply the system theme before paint to avoid a color flash.
       (() => {
-        let saved = null
-        try {
-          saved = localStorage.getItem('renown-theme')
-        } catch (err) {
-          console.warn('Failed to read renown-theme from localStorage:', err)
+        const mq = window.matchMedia('(prefers-color-scheme: dark)')
+        const apply = () => {
+          document.documentElement.dataset.theme = mq.matches ? 'dark' : 'light'
         }
-        const stored = saved === 'dark' || saved === 'light' ? saved : null
-        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-        document.documentElement.dataset.theme = stored || (systemDark ? 'dark' : 'light')
+        apply()
+        try {
+          mq.addEventListener('change', apply)
+        } catch {
+          try {
+            mq.addListener(apply)
+          } catch {}
+        }
       })()
     </script>
   </head>
