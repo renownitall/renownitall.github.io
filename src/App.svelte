@@ -127,8 +127,7 @@
           <p class="greeting">Hi, I'm</p>
           <TypedTitle {pseudonym} />
           <p class="tagline">
-            I like making things for my own use.<br />
-            You can also call me <strong>Meisei</strong>, so use whichever one you like.
+            I like making things for my own use.
             <span class="tagline-sub">And, as you can tell, I like ricing too.</span>
           </p>
         </div>
