@@ -1,10 +1,20 @@
 <script>
-  import { Moon, Sun } from '@lucide/svelte'
+  import { Eye, Moon, Sun } from '@lucide/svelte'
 
-  let { theme, onToggleTheme } = $props()
+  let { theme, onToggleTheme, onEnterPeek } = $props()
 </script>
 
 <div class="utility">
+  <button
+    class="icon-button"
+    type="button"
+    id="peek-button"
+    onclick={onEnterPeek}
+    aria-label="View the wallpaper in full"
+    title="View the wallpaper in full"
+  >
+    <Eye size={17} />
+  </button>
   <button
     class="icon-button"
     type="button"
@@ -24,7 +34,7 @@
 <style>
   .utility {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     min-height: var(--space-6);
     margin-bottom: var(--space-5);
   }
