@@ -77,14 +77,11 @@ body {
    element keeps any leftover overshoot from creating sideways scrolling,
    with `hidden` as a fallback for older engines. Thin borders on the top and bottom edges
    mark the boundary. An inner shadow places the photo visually behind the page
-   so the band stays in the background and the site content stays in the foreground.
-   Its margins are larger than the section spacing so the band differs from other dividers. */
+   so the band stays in the background and the site content stays in the foreground. */
 .banner {
   position: relative;
   width: 100vw;
   width: 100dvw;
-  margin-top: var(--space-6);
-  margin-bottom: var(--space-6);
   margin-left: calc(50% - 50vw);
   margin-left: calc(50% - 50dvw);
   height: clamp(48px, 8vh, 96px);
@@ -132,7 +129,6 @@ main {
 }
 
 footer {
-  margin-top: var(--space-6);
   text-align: center;
   color: var(--color-text-dim);
   font-size: var(--font-size-small);
@@ -159,7 +155,6 @@ footer a:hover {
 .utility {
   display: flex;
   justify-content: space-between;
-  min-height: var(--space-6);
   margin-bottom: var(--space-5);
 }
 
