@@ -47,6 +47,8 @@
 html {
   scroll-behavior: smooth;
   background: var(--color-bg);
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -69,17 +71,22 @@ body {
    holds the light image as the base. `.banner::after` holds the dark
    image and fades the dark image in when the dark theme is active. Both images
    are sharp and unblurred. The band extends outside the centered column to span
-   the full viewport width. `overflow-x: clip` on `body` keeps the extra width
-   from creating a horizontal scrollbar. Thin borders on the top and bottom edges
+   the full viewport width. The `dvw` lines below repeat the `vw` sizing
+   against the dynamic viewport, which tracks the visible width while
+   mobile toolbars appear and resize. `overflow-x: clip` on the `html`
+   element keeps any leftover overshoot from creating sideways scrolling,
+   with `hidden` as a fallback for older engines. Thin borders on the top and bottom edges
    mark the boundary. An inner shadow places the photo visually behind the page
    so the band stays in the background and the site content stays in the foreground.
    Its margins are larger than the section spacing so the band differs from other dividers. */
 .banner {
   position: relative;
   width: 100vw;
+  width: 100dvw;
   margin-top: var(--space-6);
   margin-bottom: var(--space-6);
   margin-left: calc(50% - 50vw);
+  margin-left: calc(50% - 50dvw);
   height: clamp(48px, 8vh, 96px);
   background-image: url('/background-roman-forum-sharp.webp');
   background-size: cover;
@@ -342,11 +349,6 @@ a:focus-visible {
 }
 
 @media (max-width: 34rem) {
-  main,
-  footer {
-    width: min(calc(100% - (var(--space-6) * 2)), var(--content-width));
-  }
-
   main {
     padding-top: var(--space-4);
   }
