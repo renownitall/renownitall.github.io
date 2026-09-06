@@ -32,7 +32,6 @@
   --color-text-dim: #6b6b6b;
   --color-divider: #d0d0d0;
   --bg-overlay: rgba(250, 250, 250, 0.62);
-  --bg-blur: 16px;
 }
 [data-theme='dark'] {
   --color-bg: #121212;
@@ -70,7 +69,8 @@ body {
 /* Fixed full-page photos behind everything. `html::before` holds the light
    image as the base. `body::before` holds the dark image and fades it in
    when the dark theme is active. The `body::after` overlay below tints the
-   visible photo and blurs it so text stays readable. Content (`main` and
+   visible photo so text stays readable. Both photos ship pre-blurred, so
+   no live filter runs while scrolling. Content (`main` and
    `footer`) already sits at `z-index` 1, above all three layers. */
 html::before {
   content: '';
@@ -106,20 +106,7 @@ body::after {
   inset: 0;
   z-index: 0;
   background: var(--bg-overlay);
-  backdrop-filter: blur(var(--bg-blur)) saturate(1.1);
-  -webkit-backdrop-filter: blur(var(--bg-blur)) saturate(1.1);
   pointer-events: none;
-}
-
-/* When `backdrop-filter` is unsupported, fall back to a more opaque tint
-   so text stays readable over the photo. */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  :root {
-    --bg-overlay: rgba(250, 250, 250, 0.78);
-  }
-  [data-theme='dark'] {
-    --bg-overlay: rgba(18, 18, 18, 0.9);
-  }
 }
 
 /* Peeking hides all content (`main` and `footer`) and the tint, and swaps
