@@ -90,7 +90,7 @@ html::before {
   content: '';
   position: fixed;
   z-index: 0;
-  background-image: url('/background-girl-lotus-sketch.webp');
+  background-image: url('/background-roman-forum.webp');
   background-size: cover;
   background-position: center;
   pointer-events: none;
@@ -133,7 +133,7 @@ body::after {
 }
 
 html[data-bg='peek']::before {
-  background-image: url('/background-girl-lotus-sketch-sharp.webp');
+  background-image: url('/background-roman-forum-sharp.webp');
 }
 
 [data-bg='peek'] body::before {
