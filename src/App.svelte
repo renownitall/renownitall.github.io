@@ -6,7 +6,7 @@
   import UtilityBar from './UtilityBar.svelte'
   import { readStorage, writeStorage } from './storage.js'
 
-  // --- Editable Content ---
+  // --- Editable content ---
   const pseudonym = 'renowned'
   const sectionOrder = ['home', 'projects', 'socials', 'hobbies']
   const lastBuilt = __BUILD_DATE__
