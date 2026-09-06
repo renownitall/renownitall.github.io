@@ -118,9 +118,11 @@ a {
 }
 
 /* Plain centered column for the content that follows the banner. The banner is
-   the only decoration, so content appears directly on the page background. */
+   the only decoration, so content appears directly on the page background.
+   The side margins use the same spacing as the top and bottom (`--space-6`)
+   so the page has the same breathing room on all sides. */
 .content {
-  width: min(calc(100% - (var(--space-5) * 2)), var(--content-width));
+  width: min(calc(100% - (var(--space-6) * 2)), var(--content-width));
   margin: 0 auto;
   padding: var(--space-6) 0 var(--space-7);
 }
