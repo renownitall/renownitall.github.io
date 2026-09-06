@@ -124,7 +124,7 @@ a {
 .content {
   width: min(calc(100% - (var(--space-6) * 2)), var(--content-width));
   margin: 0 auto;
-  padding: var(--space-6) 0 var(--space-7);
+  padding: var(--space-4) 0 var(--space-7);
 }
 
 main {
@@ -196,7 +196,7 @@ section + section {
   display: flex;
   align-items: center;
   gap: var(--space-5);
-  padding-top: var(--space-6);
+  padding-top: 0;
 }
 
 .avatar {
