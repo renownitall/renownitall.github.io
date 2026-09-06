@@ -1,6 +1,5 @@
 <script>
-  import { onMount, tick } from 'svelte'
-  import { X } from '@lucide/svelte'
+  import { onMount } from 'svelte'
   import { Bird, Mail } from '@lucide/svelte'
   import GithubMark from './GithubMark.svelte'
   import TypedTitle from './TypedTitle.svelte'
@@ -74,29 +73,6 @@
     document.documentElement.dataset.theme = theme
   }
 
-  let peeking = $state(false)
-  let peekExitButton = $state(null)
-
-  function enterPeek() {
-    peeking = true
-    document.documentElement.dataset.bg = 'peek'
-  }
-
-  async function exitPeek() {
-    peeking = false
-    delete document.documentElement.dataset.bg
-    await tick()
-    document.getElementById('peek-button')?.focus()
-  }
-
-  function handleKeydown(event) {
-    if (peeking && event.key === 'Escape') exitPeek()
-  }
-
-  $effect(() => {
-    if (peeking) peekExitButton?.focus()
-  })
-
   onMount(() => {
     const root = document.documentElement
     const media = window.matchMedia('(prefers-color-scheme: dark)')
@@ -114,10 +90,8 @@
   })
 </script>
 
-<svelte:window onkeydown={handleKeydown} />
-
 <main>
-  <UtilityBar {theme} onToggleTheme={toggleTheme} onEnterPeek={enterPeek} />
+  <UtilityBar {theme} onToggleTheme={toggleTheme} />
 
   {#each sectionOrder as sectionId}
     {#if sectionId === 'home'}
@@ -187,27 +161,3 @@
   <p>Last changed on {lastBuilt}</p>
   <p>Built with <a href="https://svelte.dev" target="_blank" rel="noopener noreferrer">Svelte</a> · <a href="https://github.com/renownitall/renown" target="_blank" rel="noopener noreferrer">View the source</a> on GitHub</p>
 </footer>
-
-{#if peeking}
-  <button type="button" class="peek-exit" bind:this={peekExitButton} onclick={exitPeek} aria-label="Back to site">
-    <span class="icon-button peek-close" aria-hidden="true"><X size={17} /></span>
-  </button>
-{/if}
-
-<style>
-  .peek-exit {
-    position: fixed;
-    inset: 0;
-    z-index: 2;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: zoom-out;
-  }
-
-  .peek-close {
-    position: absolute;
-    top: var(--space-5);
-    right: var(--space-5);
-  }
-</style>

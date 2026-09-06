@@ -120,26 +120,6 @@ body::after {
   pointer-events: none;
 }
 
-/* Peeking hides all content (`main` and `footer`) and the tint, and swaps
-   in the sharp photos so the wallpaper shows in full. Exit from the
-   full-screen button or the Escape key. */
-[data-bg='peek'] main,
-[data-bg='peek'] footer {
-  visibility: hidden;
-}
-
-[data-bg='peek'] body::after {
-  display: none;
-}
-
-html[data-bg='peek']::before {
-  background-image: url('/background-roman-forum-sharp.webp');
-}
-
-[data-bg='peek'] body::before {
-  background-image: url('/background-flower-basket-sharp.webp');
-}
-
 button,
 a {
   font: inherit;

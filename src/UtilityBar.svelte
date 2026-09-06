@@ -1,20 +1,26 @@
 <script>
   import { Eye, Moon, Sun } from '@lucide/svelte'
 
-  let { theme, onToggleTheme, onEnterPeek } = $props()
+  let { theme, onToggleTheme } = $props()
+
+  let wallpaperUrl = $derived(
+    theme === 'dark'
+      ? 'https://github.com/renownitall/renownitall.github.io/blob/main/public/background-flower-basket-sharp.webp'
+      : 'https://github.com/renownitall/renownitall.github.io/blob/main/public/background-roman-forum-sharp.webp',
+  )
 </script>
 
 <div class="utility">
-  <button
+  <a
     class="icon-button"
-    type="button"
-    id="peek-button"
-    onclick={onEnterPeek}
-    aria-label="View the wallpaper in full"
-    title="View the wallpaper in full"
+    href={wallpaperUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="View the unblurred wallpaper on GitHub"
+    title="View the unblurred wallpaper on GitHub"
   >
     <Eye size={17} />
-  </button>
+  </a>
   <button
     class="icon-button"
     type="button"
