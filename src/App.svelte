@@ -21,8 +21,8 @@
     {
       label: 'forge',
       description: 'My Arch Linux package repository',
-      link: 'https://github.com/renownitall/forge',
-      url: 'renownitall/forge',
+      link: 'https://renownitall.github.io/forge',
+      url: 'renownitall.github.io/forge',
     },
     {
       label: 'calpdf',
@@ -71,6 +71,12 @@
   function toggleTheme() {
     theme = theme === 'dark' ? 'light' : 'dark'
     document.documentElement.dataset.theme = theme
+    syncThemeColor(theme)
+  }
+
+  function syncThemeColor(value) {
+    const meta = document.querySelector('meta[name="theme-color"]')
+    if (meta) meta.setAttribute('content', value === 'dark' ? '#121212' : '#fafafa')
   }
 
   onMount(() => {
@@ -79,10 +85,12 @@
     const storedTheme = root.dataset.theme
     theme = storedTheme || (media.matches ? 'dark' : 'light')
     if (!storedTheme) root.dataset.theme = theme
+    syncThemeColor(theme)
 
     const followSystemTheme = (event) => {
       theme = event.matches ? 'dark' : 'light'
       root.dataset.theme = theme
+      syncThemeColor(theme)
     }
 
     media.addEventListener('change', followSystemTheme)

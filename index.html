@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Hi, I'm renowned. I like making things for my own use." />
+    <meta name="theme-color" content="#121212" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,7 +44,10 @@
       (() => {
         const mq = window.matchMedia('(prefers-color-scheme: dark)')
         const apply = () => {
-          document.documentElement.dataset.theme = mq.matches ? 'dark' : 'light'
+          const theme = mq.matches ? 'dark' : 'light'
+          document.documentElement.dataset.theme = theme
+          const meta = document.querySelector('meta[name="theme-color"]')
+          if (meta) meta.content = theme === 'dark' ? '#121212' : '#fafafa'
         }
         apply()
         try {
