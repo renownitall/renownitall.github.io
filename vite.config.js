@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 
-// Stamp the build date (in Asia/Jakarta) for the footer.
+// Stamp the build date for the footer in Western Indonesia Time (UTC+7) using `Asia/Jakarta`.
 const nth = (day) => {
   if (day >= 11 && day <= 13) return 'th'
   return { 1: 'st', 2: 'nd', 3: 'rd' }[day % 10] || 'th'
@@ -25,7 +25,7 @@ const buildDate = getBuildDate()
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [svelte()],
-  // Serve from the site root on GitHub Pages, where the user page repo is the site itself.
+  // Serve from the site root on GitHub Pages, where the user page repository is the site itself.
   base: '/',
   define: {
     __BUILD_DATE__: JSON.stringify(buildDate),

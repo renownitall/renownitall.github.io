@@ -23,15 +23,14 @@
   --focus-width: 2px;
 }
 
-/* Theme color variables are inlined in index.html <style> to avoid a flash
-   of incorrect colors before the bundled CSS loads. */
+/* Theme color variables are inlined in the `<style>` element in the `index.html`
+   file to avoid a flash of incorrect colors before the bundled CSS loads. */
 :root {
   --color-bg: #fafafa;
   --color-text-primary: #1a1a1a;
   --color-text-secondary: #4d4d4d;
   --color-text-dim: #6b6b6b;
   --color-divider: #d0d0d0;
-  --bg-overlay: rgba(250, 250, 250, 0.62);
 }
 [data-theme='dark'] {
   --color-bg: #121212;
@@ -39,7 +38,6 @@
   --color-text-secondary: #b3b3b3;
   --color-text-dim: #8a8a8a;
   --color-divider: #3a3a3a;
-  --bg-overlay: rgba(18, 18, 18, 0.86);
 }
 
 * {
@@ -56,6 +54,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   min-height: 100dvh;
+  overflow-x: clip;
   background: var(--color-bg);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
@@ -66,58 +65,44 @@ body {
   transition: background-color 160ms ease, color 160ms ease;
 }
 
-/* Fixed full-page photos behind everything. `html::before` holds the light
-   image as the base. `body::before` holds the dark image and fades it in
-   when the dark theme is active. The `body::after` overlay below tints the
-   visible photo so text stays readable. Both photos ship pre-blurred, so
-   no live filter runs while scrolling. Content (`main` and
-   `footer`) already sits at `z-index` 1, above all three layers.
-   The layers below size against the large viewport. The `vw` and `vh`
-   lines stay as a fallback for browsers without large viewport units.
-   The large viewport never changes size when the iOS Safari toolbar
-   appears or during pinch zoom, so the wallpaper no longer jumps. */
-html::before,
-body::before,
-body::after {
-  top: 0;
-  left: 0;
+/* Wallpaper band between the opening section and the following sections. `.banner`
+   holds the light image as the base. `.banner::after` holds the dark
+   image and fades the dark image in when the dark theme is active. Both images
+   are sharp and unblurred. The band extends outside the centered column to span
+   the full viewport width. `overflow-x: clip` on `body` keeps the extra width
+   from creating a horizontal scrollbar. Thin borders on the top and bottom edges
+   mark the boundary. An inner shadow places the photo visually behind the page
+   so the band stays in the background and the site content stays in the foreground.
+   Its margins are larger than the section spacing so the band differs from other dividers. */
+.banner {
+  position: relative;
   width: 100vw;
-  width: 100lvw;
-  height: 100vh;
-  height: 100lvh;
-}
-html::before {
-  content: '';
-  position: fixed;
-  z-index: 0;
-  background-image: url('/background-roman-forum.webp');
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-6);
+  margin-left: calc(50% - 50vw);
+  height: clamp(48px, 8vh, 96px);
+  background-image: url('/background-roman-forum-sharp.webp');
   background-size: cover;
-  background-position: center;
-  pointer-events: none;
+  background-position: var(--banner-pos);
+  border-top: 1px solid var(--color-divider);
+  border-bottom: 1px solid var(--color-divider);
+  box-shadow: inset 0 0 48px rgb(0 0 0 / 0.5);
+  --banner-pos: center 20%;
 }
 
-body::before {
+.banner::after {
   content: '';
-  position: fixed;
-  z-index: 0;
-  background-image: url('/background-flower-basket.webp');
+  position: absolute;
+  inset: 0;
+  background-image: url('/background-flower-basket-sharp.webp');
   background-size: cover;
-  background-position: center;
-  pointer-events: none;
+  background-position: var(--banner-pos);
   opacity: 0;
   transition: opacity 600ms ease;
 }
 
-[data-theme='dark'] body::before {
+[data-theme='dark'] .banner::after {
   opacity: 1;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  z-index: 0;
-  background: var(--bg-overlay);
-  pointer-events: none;
 }
 
 button,
@@ -125,20 +110,20 @@ a {
   font: inherit;
 }
 
-main {
-  position: relative;
-  z-index: 1;
+/* Plain centered column for the content that follows the banner. The banner is
+   the only decoration, so content appears directly on the page background. */
+.content {
   width: min(calc(100% - (var(--space-5) * 2)), var(--content-width));
   margin: 0 auto;
-  padding: var(--space-6) 0 var(--space-5);
+  padding: var(--space-6) 0 var(--space-7);
+}
+
+main {
+  padding-top: var(--space-2);
 }
 
 footer {
-  position: relative;
-  z-index: 1;
-  width: min(calc(100% - (var(--space-5) * 2)), var(--content-width));
-  margin: 0 auto;
-  padding: var(--space-5) 0 var(--space-7);
+  margin-top: var(--space-6);
   text-align: center;
   color: var(--color-text-dim);
   font-size: var(--font-size-small);
@@ -376,7 +361,7 @@ a:focus-visible {
     transition: none;
   }
 
-  body::before {
+  .banner::after {
     transition: none;
   }
 

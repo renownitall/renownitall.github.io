@@ -90,74 +90,77 @@
   })
 </script>
 
-<main>
-  <UtilityBar {theme} onToggleTheme={toggleTheme} />
+<div class="content">
+  <main>
+    <UtilityBar {theme} onToggleTheme={toggleTheme} />
 
-  {#each sectionOrder as sectionId}
-    {#if sectionId === 'home'}
-      <section id="home" class="home" aria-labelledby="home-title">
-        <img class="avatar" src="/pfp.webp" alt="renowned" />
-        <div>
-          <p class="greeting">Hi, I'm</p>
-          <TypedTitle {pseudonym} />
-          <p class="tagline">
-            I like making things for my own use.
-            <span class="tagline-sub">And, as you can tell, I like ricing too.</span>
-          </p>
-        </div>
-      </section>
-    {:else if sectionId === 'projects'}
-      <section id="projects" aria-labelledby="projects-title">
-        <h2 id="projects-title">My stuff</h2>
-        <svelte:element this={listTag(projectsListStyle)} class:list-plain={projectsListStyle === 'plain'}>
-          {#each projects as project (project.label)}
-            <li>
-              <a class="item-title" href={project.link} target="_blank" rel="noopener noreferrer">{project.label}</a>
-              {#if project.url}<span class="item-meta">{project.url}</span>{/if}
-              <p>{project.description}</p>
-            </li>
-          {/each}
-        </svelte:element>
-      </section>
-    {:else if sectionId === 'socials'}
-      <section id="socials" aria-labelledby="socials-title">
-        <h2 id="socials-title">Where to find me</h2>
-        <svelte:element this={listTag(socialsListStyle)} class:list-plain={socialsListStyle === 'plain'}>
-          {#each socials as social (social.label)}
-            {@const Icon = social.icon}
-            <li class="social-item">
-              <span class="social-icon"><Icon size={17} /></span>
-              <span>
-                <a
-                  class="item-title"
-                  href={social.link}
-                  target={social.link.startsWith('http') ? '_blank' : undefined}
-                  rel={social.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  >{social.label}</a
-                >
-                <span class="item-meta">{social.subtext}</span>
-              </span>
-            </li>
-          {/each}
-        </svelte:element>
-      </section>
-    {:else if sectionId === 'hobbies'}
-      <section id="hobbies" aria-labelledby="hobbies-title">
-        <h2 id="hobbies-title">What I do in my free time</h2>
-        <svelte:element this={listTag(hobbiesListStyle)} class:list-plain={hobbiesListStyle === 'plain'}>
-          {#each hobbies as hobby (hobby.label)}
-            <li>
-              <span class="item-title">{hobby.label}</span>
-              {#if hobby.subtext}<span class="item-meta">{hobby.subtext}</span>{/if}
-            </li>
-          {/each}
-        </svelte:element>
-      </section>
-    {/if}
-  {/each}
-</main>
+    {#each sectionOrder as sectionId}
+      {#if sectionId === 'home'}
+        <section id="home" class="home" aria-labelledby="home-title">
+          <img class="avatar" src="/pfp.webp" alt="renowned" />
+          <div>
+            <p class="greeting">Hi, I'm</p>
+            <TypedTitle {pseudonym} />
+            <p class="tagline">
+              I like making things for my own use.
+              <span class="tagline-sub">And, as you can tell, I like ricing too.</span>
+            </p>
+          </div>
+        </section>
+        <div class="banner" aria-hidden="true"></div>
+      {:else if sectionId === 'projects'}
+        <section id="projects" aria-labelledby="projects-title">
+          <h2 id="projects-title">My stuff</h2>
+          <svelte:element this={listTag(projectsListStyle)} class:list-plain={projectsListStyle === 'plain'}>
+            {#each projects as project (project.label)}
+              <li>
+                <a class="item-title" href={project.link} target="_blank" rel="noopener noreferrer">{project.label}</a>
+                {#if project.url}<span class="item-meta">{project.url}</span>{/if}
+                <p>{project.description}</p>
+              </li>
+            {/each}
+          </svelte:element>
+        </section>
+      {:else if sectionId === 'socials'}
+        <section id="socials" aria-labelledby="socials-title">
+          <h2 id="socials-title">Where to find me</h2>
+          <svelte:element this={listTag(socialsListStyle)} class:list-plain={socialsListStyle === 'plain'}>
+            {#each socials as social (social.label)}
+              {@const Icon = social.icon}
+              <li class="social-item">
+                <span class="social-icon"><Icon size={17} /></span>
+                <span>
+                  <a
+                    class="item-title"
+                    href={social.link}
+                    target={social.link.startsWith('http') ? '_blank' : undefined}
+                    rel={social.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    >{social.label}</a
+                  >
+                  <span class="item-meta">{social.subtext}</span>
+                </span>
+              </li>
+            {/each}
+          </svelte:element>
+        </section>
+      {:else if sectionId === 'hobbies'}
+        <section id="hobbies" aria-labelledby="hobbies-title">
+          <h2 id="hobbies-title">What I do in my free time</h2>
+          <svelte:element this={listTag(hobbiesListStyle)} class:list-plain={hobbiesListStyle === 'plain'}>
+            {#each hobbies as hobby (hobby.label)}
+              <li>
+                <span class="item-title">{hobby.label}</span>
+                {#if hobby.subtext}<span class="item-meta">{hobby.subtext}</span>{/if}
+              </li>
+            {/each}
+          </svelte:element>
+        </section>
+      {/if}
+    {/each}
+  </main>
 
-<footer>
-  <p>Last changed on {lastBuilt}</p>
-  <p>Built with <a href="https://svelte.dev" target="_blank" rel="noopener noreferrer">Svelte</a> · <a href="https://github.com/renownitall/renown" target="_blank" rel="noopener noreferrer">View the source</a> on GitHub</p>
-</footer>
+  <footer>
+    <p>Last changed on {lastBuilt}</p>
+    <p>Built with <a href="https://svelte.dev" target="_blank" rel="noopener noreferrer">Svelte</a> · <a href="https://github.com/renownitall/renown" target="_blank" rel="noopener noreferrer">View the source</a> on GitHub</p>
+  </footer>
+</div>
