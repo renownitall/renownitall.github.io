@@ -71,11 +71,24 @@ body {
    when the dark theme is active. The `body::after` overlay below tints the
    visible photo so text stays readable. Both photos ship pre-blurred, so
    no live filter runs while scrolling. Content (`main` and
-   `footer`) already sits at `z-index` 1, above all three layers. */
+   `footer`) already sits at `z-index` 1, above all three layers.
+   The layers below size against the large viewport. The `vw` and `vh`
+   lines stay as a fallback for browsers without large viewport units.
+   The large viewport never changes size when the iOS Safari toolbar
+   appears or during pinch zoom, so the wallpaper no longer jumps. */
+html::before,
+body::before,
+body::after {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  width: 100lvw;
+  height: 100vh;
+  height: 100lvh;
+}
 html::before {
   content: '';
   position: fixed;
-  inset: 0;
   z-index: 0;
   background-image: url('/background-girl-lotus-sketch.webp');
   background-size: cover;
@@ -86,7 +99,6 @@ html::before {
 body::before {
   content: '';
   position: fixed;
-  inset: 0;
   z-index: 0;
   background-image: url('/background-flower-basket.webp');
   background-size: cover;
@@ -103,7 +115,6 @@ body::before {
 body::after {
   content: '';
   position: fixed;
-  inset: 0;
   z-index: 0;
   background: var(--bg-overlay);
   pointer-events: none;
