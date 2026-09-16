@@ -40,23 +40,18 @@
       }
     </style>
     <script>
-      // Apply the system theme before paint to avoid a color flash.
+      // Apply the system theme before paint to avoid a color flash. The
+      // theme-color meta mirrors the page background, so its value is read
+      // from the `--color-bg` variable instead of duplicating the hex codes.
       (() => {
         const mq = window.matchMedia('(prefers-color-scheme: dark)')
         const apply = () => {
-          const theme = mq.matches ? 'dark' : 'light'
-          document.documentElement.dataset.theme = theme
+          document.documentElement.dataset.theme = mq.matches ? 'dark' : 'light'
           const meta = document.querySelector('meta[name="theme-color"]')
-          if (meta) meta.content = theme === 'dark' ? '#121212' : '#fafafa'
+          if (meta) meta.content = getComputedStyle(document.documentElement).getPropertyValue('--color-bg').trim()
         }
         apply()
-        try {
-          mq.addEventListener('change', apply)
-        } catch {
-          try {
-            mq.addListener(apply)
-          } catch {}
-        }
+        mq.addEventListener('change', apply)
       })()
     </script>
   </head>

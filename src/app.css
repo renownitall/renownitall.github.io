@@ -174,10 +174,6 @@ footer a:hover {
   color: var(--color-text-primary);
 }
 
-.icon-button + .icon-button {
-  margin-left: var(--space-2);
-}
-
 section {
   padding: var(--space-7) 0;
   scroll-margin-top: var(--space-5);
@@ -210,14 +206,6 @@ p {
   margin-top: 0;
 }
 
-h1 {
-  margin-bottom: var(--space-1);
-  font-family: var(--font-mono);
-  font-size: var(--font-size-name);
-  font-weight: var(--font-weight-bold);
-  line-height: 1.2;
-}
-
 .greeting {
   color: var(--color-text-secondary);
   font-size: var(--font-size-small);
@@ -241,15 +229,6 @@ h2 {
   margin-bottom: var(--space-6);
   font-size: var(--font-size-heading);
   font-weight: var(--font-weight-bold);
-}
-
-.cursor {
-  margin-left: var(--space-1);
-  color: var(--color-text-secondary);
-}
-
-.cursor.blink {
-  animation: cursor-blink 1.1s steps(1, end) infinite;
 }
 
 ul,
@@ -340,11 +319,6 @@ a:focus-visible {
   text-decoration-thickness: var(--focus-width);
 }
 
-@keyframes cursor-blink {
-  0%, 48% { opacity: 1; }
-  49%, 100% { opacity: 0; }
-}
-
 @media (max-width: 34rem) {
   main {
     padding-top: var(--space-4);
@@ -366,9 +340,5 @@ a:focus-visible {
 
   .icon-button {
     transition: none;
-  }
-
-  .cursor.blink {
-    animation: none;
   }
 }
