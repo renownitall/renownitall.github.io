@@ -1,6 +1,6 @@
 :root {
-  --font-sans: 'Google Sans', 'Noto Sans', sans-serif;
-  --font-mono: 'Google Sans Code', ui-monospace, monospace;
+  --font-sans: 'Source Sans 3', system-ui, sans-serif;
+  --font-mono: 'Source Code Pro', ui-monospace, monospace;
   --font-weight-normal: 400;
   --font-weight-bold: 700;
   --font-size-body: 1rem;
