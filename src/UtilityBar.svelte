@@ -15,7 +15,7 @@
     class="icon-button"
     href={wallpaperUrl}
     target="_blank"
-    rel="noopener noreferrer"
+    rel="noreferrer"
     aria-label="View the unblurred wallpaper on GitHub"
     title="View the unblurred wallpaper on GitHub"
   >

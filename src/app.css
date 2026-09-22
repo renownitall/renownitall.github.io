@@ -63,7 +63,6 @@ body {
   font-size: var(--font-size-body);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height);
-  text-align: left;
   transition: background-color 160ms ease, color 160ms ease;
 }
 
@@ -110,8 +109,7 @@ body {
   opacity: 1;
 }
 
-button,
-a {
+button {
   font: inherit;
 }
 
@@ -243,14 +241,6 @@ ol {
   list-style-type: none;
 }
 
-ul:not(.list-plain) {
-  list-style-type: disc;
-}
-
-ol {
-  list-style-type: decimal;
-}
-
 li {
   padding-left: var(--space-2);
 }
@@ -309,11 +299,6 @@ li p {
 
 :focus:not(:focus-visible) {
   outline: none;
-}
-
-:focus-visible {
-  outline: var(--focus-width) solid var(--color-text-primary);
-  outline-offset: var(--space-1);
 }
 
 a:focus-visible {

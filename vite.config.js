@@ -25,8 +25,6 @@ const buildDate = getBuildDate()
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [svelte()],
-  // Serve from the site root on GitHub Pages, where the user page repository is the site itself.
-  base: '/',
   define: {
     __BUILD_DATE__: JSON.stringify(buildDate),
   },

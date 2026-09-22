@@ -106,8 +106,8 @@
       <ol>
         {#each projects as project}
           <li>
-            <a class="item-title" href={project.link} target="_blank" rel="noopener noreferrer">{project.label}</a>
-            {#if project.url}<span class="item-meta">{project.url}</span>{/if}
+            <a class="item-title" href={project.link} target="_blank" rel="noreferrer">{project.label}</a>
+            <span class="item-meta">{project.url}</span>
             <p>{project.description}</p>
           </li>
         {/each}
@@ -126,7 +126,7 @@
                 class="item-title"
                 href={social.link}
                 target={social.link.startsWith('http') ? '_blank' : undefined}
-                rel={social.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                rel={social.link.startsWith('http') ? 'noreferrer' : undefined}
                 >{social.label}</a
               >
               <span class="item-meta">{social.subtext}</span>
@@ -142,7 +142,7 @@
         {#each hobbies as hobby}
           <li>
             <span class="item-title">{hobby.label}</span>
-            {#if hobby.subtext}<span class="item-meta">{hobby.subtext}</span>{/if}
+            <span class="item-meta">{hobby.subtext}</span>
           </li>
         {/each}
       </ul>
@@ -151,6 +151,6 @@
 
   <footer>
     <p>Last changed on {lastBuilt}</p>
-    <p>Built with <a href="https://svelte.dev" target="_blank" rel="noopener noreferrer">Svelte</a> · <a href="https://github.com/renownitall/renown" target="_blank" rel="noopener noreferrer">View the source</a> on GitHub</p>
+    <p>Built with <a href="https://svelte.dev" target="_blank" rel="noreferrer">Svelte</a> · <a href="https://github.com/renownitall/renown" target="_blank" rel="noreferrer">View the source</a> on GitHub</p>
   </footer>
 </div>
