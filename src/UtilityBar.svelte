@@ -5,8 +5,8 @@
 
   let wallpaperUrl = $derived(
     theme === 'dark'
-      ? 'https://github.com/renownitall/renownitall.github.io/blob/main/public/background-flower-basket-sharp.webp'
-      : 'https://github.com/renownitall/renownitall.github.io/blob/main/public/background-roman-forum-sharp.webp',
+      ? 'https://github.com/renownitall/renownitall.github.io/blob/main/wallpapers/background-flower-basket-sharp.webp'
+      : 'https://github.com/renownitall/renownitall.github.io/blob/main/wallpapers/background-roman-forum-sharp.webp',
   )
 </script>
 

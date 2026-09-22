@@ -5,7 +5,7 @@
   --font-weight-bold: 700;
   --font-size-body: 1rem;
   --font-size-small: 0.8125rem;
-  --font-size-caption: 0.625rem;
+  --font-size-caption: 0.75rem;
   --font-size-heading: 1.125rem;
   --font-size-name: clamp(1.75rem, 5vw, 2.5rem);
   --line-height: 1.65;
@@ -30,7 +30,7 @@
   --color-text-primary: #1a1a1a;
   --color-text-secondary: #4d4d4d;
   --color-text-dim: #6b6b6b;
-  --color-divider: #d0d0d0;
+  --color-divider: #c4c4c4;
 }
 [data-theme='dark'] {
   --color-bg: #121212;
@@ -70,7 +70,8 @@ body {
 /* Wallpaper band between the opening section and the following sections. `.banner`
    holds the light image as the base. `.banner::after` holds the dark
    image and fades the dark image in when the dark theme is active. Both images
-   are sharp and unblurred. The band extends outside the centered column to span
+   are sharp 1920×144 strips cropped from the full-res originals, which live in
+   `wallpapers/` and are not deployed. The band extends outside the centered column to span
    the full viewport width. The `dvw` lines below repeat the `vw` sizing
    against the dynamic viewport, which tracks the visible width while
    mobile toolbars appear and resize. `overflow-x: clip` on the `html`
@@ -85,7 +86,7 @@ body {
   margin-left: calc(50% - 50vw);
   margin-left: calc(50% - 50dvw);
   height: clamp(48px, 8vh, 96px);
-  background-image: url('/background-roman-forum-sharp.webp');
+  background-image: url('/banner-light.webp');
   background-size: cover;
   background-position: var(--banner-pos);
   border-top: 1px solid var(--color-divider);
@@ -98,7 +99,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('/background-flower-basket-sharp.webp');
+  background-image: url('/banner-dark.webp');
   background-size: cover;
   background-position: var(--banner-pos);
   opacity: 0;

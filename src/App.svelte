@@ -89,7 +89,7 @@
     <UtilityBar {theme} onToggleTheme={toggleTheme} />
 
     <section id="home" class="home" aria-labelledby="home-title">
-      <img class="avatar" src="/pfp.webp" alt="renowned" />
+      <img class="avatar" src="/pfp.webp" alt="" />
       <div>
         <p class="greeting">Hi, I'm</p>
         <TypedTitle {pseudonym} />
